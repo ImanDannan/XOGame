@@ -113,10 +113,23 @@ while not(game_over) :
    Wrong_Enter= False 
    while not(Wrong_Enter):
      print player1.player_name + " Turn:"
-     row= int(raw_input("Enter Cell row no (1-3)"))
-     row=row-1
-     col= int(raw_input("Enter Cell col no (1-3)")) 
-     col=col-1	 
+     while True:
+         row= raw_input("Enter Cell row no (1-3)")
+         if row.isdigit():
+            row=int(row)
+            if row in [1,2,3]:
+               row=row-1
+               break
+             
+     while True:
+        col= raw_input("Enter Cell col no (1-3)")
+        if col.isdigit():
+           col=int(col)
+           if col in [1,2,3]:
+              col=col-1
+              break
+           
+          
      if player1.IsEmpty_Cell(row,col) and player2.IsEmpty_Cell(row,col):
        xo="x"
        player1.Set_Cell(row,col,xo)
@@ -138,10 +151,24 @@ while not(game_over) :
    Wrong_Enter= False 
    while not(Wrong_Enter) and not(game_over):
      print player2.player_name + " Turn:"
-     row= int(raw_input("Enter Cell row no (1-3)"))
-     row=row-1
-     col= int(raw_input("Enter Cell col no (1-3)"))
-     col=col-1	 
+     while True:
+         row= raw_input("Enter Cell row no (1-3)")
+         if row.isdigit():
+            row=int(row)
+            if row in [1,2,3]:
+               row=row-1
+               break
+            
+         
+     while True:
+        col= raw_input("Enter Cell col no (1-3)")
+        if col.isdigit():
+           col=int(col)
+           if col in [1,2,3]:
+              col=col-1
+              break
+           
+        
      if player2.IsEmpty_Cell(row,col) and player1.IsEmpty_Cell(row,col):
        xo="o"
        player2.Set_Cell(row,col,xo)
