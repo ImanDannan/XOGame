@@ -96,10 +96,15 @@ class xo_matrix():
       else:
              return False 
 
+def flipxo(turn):
+  if turn == "x":
+    turn="o"
+  else:
+    turn="x"
+  return turn  
 
 
-
-
+#---------- main ------------------
 
 player1= xo_matrix("Player1")
 player2= xo_matrix("Player2")
@@ -108,11 +113,16 @@ player2.player_name=raw_input("Enter Player2 Name ")
 
 print (player1.player_name + " x ||| " + player2.player_name + " o ")
 game_over=False
+xo="o"
 while not(game_over) :
+   xo=flipxo(xo)
    player1.ShowMatrix()
    Wrong_Enter= False 
    while not(Wrong_Enter):
-     print player1.player_name + " Turn:"
+     if xo=="x" :
+       print player1.player_name  + " Turn:"
+     if xo=="o":
+       print player2.player_name  + " Turn:" 
      while True:
          row= raw_input("Enter Cell row no (1-3)")
          if row.isdigit():
@@ -130,8 +140,7 @@ while not(game_over) :
               break
            
           
-     if player1.IsEmpty_Cell(row,col) and player2.IsEmpty_Cell(row,col):
-       xo="x"
+     if player1.IsEmpty_Cell(row,col):
        player1.Set_Cell(row,col,xo)
        if player1.CheckRow():
           game_over=True  
@@ -146,45 +155,7 @@ while not(game_over) :
        print("Cell not Empty! Try another Cell")
        Wrong_Enter=False
 
-#----------------------------------
-   player1.ShowMatrix()
-   Wrong_Enter= False 
-   while not(Wrong_Enter) and not(game_over):
-     print player2.player_name + " Turn:"
-     while True:
-         row= raw_input("Enter Cell row no (1-3)")
-         if row.isdigit():
-            row=int(row)
-            if row in [1,2,3]:
-               row=row-1
-               break
-            
-         
-     while True:
-        col= raw_input("Enter Cell col no (1-3)")
-        if col.isdigit():
-           col=int(col)
-           if col in [1,2,3]:
-              col=col-1
-              break
-           
-        
-     if player2.IsEmpty_Cell(row,col) and player1.IsEmpty_Cell(row,col):
-       xo="o"
-       player2.Set_Cell(row,col,xo)
-       if player2.CheckRow():
-         game_over=True
-       if player2.CheckColumn():
-         game_over=True
-       if player2.CheckDiagonal():
-           game_over=True    
-       if player2.IsFull_Matrix():
-         game_over=True
-           
-       Wrong_Enter=True 
-     else:
-       print("Cell not Empty! Try another Cell")
-       Wrong_Enter=False
+
 
 
 
